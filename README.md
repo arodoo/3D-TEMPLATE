@@ -173,12 +173,12 @@ de modo que un commit que llega al repositorio ya pasa formato y lint.
 
 ## Documentacion
 
-| Modo        | Pregunta              | Carpeta                                  |
-| ----------- | --------------------- | ---------------------------------------- |
-| Explanation | Por que es asi?       | [`docs/explanation/`](docs/explanation/) |
-| How-to      | Como hago X?          | [`docs/how-to/`](docs/how-to/)           |
-| Reference   | Que es exactamente Y? | [`docs/reference/`](docs/reference/)     |
-| Tutorial    | Como aprendo?         | [`docs/tutorials/`](docs/tutorials/)     |
+| Modo        | Pregunta              | Carpeta                                           |
+| ----------- | --------------------- | ------------------------------------------------- |
+| Explanation | Por que es asi?       | [`docs/explanation/`](docs/explanation/)          |
+| How-to      | Como hago X?          | [`docs/how-to/`](docs/how-to/)                    |
+| Reference   | Que es exactamente Y? | [`docs/reference/`](docs/reference/)              |
+| Tutorial    | Como aprendo?         | Reservado, ver [indice](docs/README.md#tutorials) |
 
 Las reglas de redaccion estan en [`docs/README.md`](docs/README.md).
 
