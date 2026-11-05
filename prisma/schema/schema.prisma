@@ -1,0 +1,17 @@
+// File location: prisma/schema/schema.prisma
+// File function: Raiz del esquema Prisma 7 de la landing, declarando el generador
+// prisma-client con salida tipada en el codigo fuente y el datasource de PostgreSQL,
+// junto a los modelos de cada agregado separados en archivos por dominio.
+// All Rights Reserved arodoo
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../../src/generated/prisma"
+  runtime             = "nodejs"
+  moduleFormat        = "esm"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}

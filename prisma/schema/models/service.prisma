@@ -1,0 +1,23 @@
+// File location: prisma/models/service.prisma
+// File function: Modelo del catalogo de servicios ofertados por el estudio, con los
+// metadatos de posicion, precio orientativo y visibilidad necesarios para alimentar
+// dinamicamente las secciones de servicios de la landing desde la base de datos.
+// All Rights Reserved arodoo
+
+model Service {
+  id          String   @id @default(uuid(7))
+  slug        String   @unique
+  title       String
+  tagline     String
+  description String
+  icon        String
+  priceFrom   Int?
+  currency    String   @default("EUR")
+  sortOrder   Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("services")
+}

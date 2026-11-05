@@ -1,0 +1,7 @@
+{
+  "*.{ts,tsx,js,mjs,css,json,md,yml,yaml}": [
+    "prettier --write --ignore-unknown"
+  ],
+  "*.prisma": ["prisma format"],
+  "*.{ts,tsx,js,mjs}": ["eslint --fix --max-warnings 0"]
+}

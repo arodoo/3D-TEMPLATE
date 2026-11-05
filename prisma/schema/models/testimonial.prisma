@@ -1,0 +1,22 @@
+// File location: prisma/models/testimonial.prisma
+// File function: Modelo de los testimonios de clientes que el estudio muestra en la
+// seccion de confianzas de la landing, con su autorizacion para publicacion y el
+// enlace opcional al perfil profesional que respalda cada cita mostrada.
+// All Rights Reserved arodoo
+
+model Testimonial {
+  id        String   @id @default(uuid(7))
+  author    String
+  role      String
+  company   String
+  quote     String
+  avatarUrl String?
+  rating    Int      @default(5)
+  sortOrder Int      @default(0)
+  isShown   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("testimonials")
+}

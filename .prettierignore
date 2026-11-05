@@ -1,0 +1,17 @@
+# File location: .prettierignore
+# File function: Excluye del formateo de Prettier los artefactos generados, las
+# dependencias instaladas, los informes de cobertura y las migraciones de base
+# de datos, para que el formato solo se aplique al codigo fuente mantenido.
+# All Rights Reserved arodoo
+
+node_modules
+.next
+out
+build
+coverage
+playwright-report
+test-results
+src/generated
+prisma/schema
+pnpm-lock.yaml
+next-env.d.ts

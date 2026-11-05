@@ -1,0 +1,17 @@
+// File location: prisma/models/site-setting.prisma
+// File function: Modelo de la configuracion editable del sitio que permite al cliente
+// cambiar textos institutionales, datos de contacto y enlaces sociales sin tocar el
+// codigo, desacoplando el contenido editable de los componentes de la landing.
+// All Rights Reserved arodoo
+
+model SiteSetting {
+  id        String   @id @default(uuid(7))
+  key       String   @unique
+  value     Json
+  group     String   @default("general")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([group])
+  @@map("site_settings")
+}

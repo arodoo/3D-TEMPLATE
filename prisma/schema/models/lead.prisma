@@ -1,0 +1,55 @@
+// File location: prisma/models/lead.prisma
+// File function: Modelo del agregado Lead que persiste las solicitudes de contacto
+// recibidas desde el formulario de la landing, incluyendo su estado comercial, el
+// rango de presupuesto declarado y los metadatos de origen para su trazabilidad.
+// All Rights Reserved arodoo
+
+enum LeadStatus {
+  NEW
+  IN_REVIEW
+  CONTACTED
+  QUALIFIED
+  WON
+  LOST
+  SPAM
+}
+
+enum BudgetRange {
+  UNDER_5K
+  FROM_5K_TO_15K
+  FROM_15K_TO_50K
+  OVER_50K
+  UNKNOWN
+}
+
+model Lead {
+  id          String      @id @default(uuid(7))
+  name        String
+  email       String      @unique
+  company     String?
+  phone       String?
+  message     String
+  budgetRange BudgetRange @default(UNKNOWN)
+  status      LeadStatus  @default(NEW)
+  source      String      @default("website")
+  referrer    String?
+  userAgent   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  notes       LeadNote[]
+
+  @@index([status, createdAt])
+  @@map("leads")
+}
+
+model LeadNote {
+  id        String   @id @default(uuid(7))
+  content   String
+  author    String
+  createdAt DateTime @default(now())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_notes")
+}

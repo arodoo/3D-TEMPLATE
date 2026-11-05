@@ -1,0 +1,28 @@
+// File location: prisma/models/project.prisma
+// File function: Modelo del portfolio de proyectos realizados por el estudio, que
+// almacena la ficha tecnica de cada caso con su technology stack, metricas y
+// enlaces para presentar credenciales en la seccion de trabajos de la landing.
+// All Rights Reserved arodoo
+
+model Project {
+  id          String   @id @default(uuid(7))
+  slug        String   @unique
+  title       String
+  client      String
+  summary     String
+  description String
+  coverUrl    String?
+  videoUrl    String?
+  liveUrl     String?
+  repoUrl     String?
+  stack       String[] @default([])
+  metrics     Json?
+  sortOrder   Int      @default(0)
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("projects")
+}

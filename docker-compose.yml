@@ -1,0 +1,45 @@
+# File location: docker-compose.yml
+# File function: Define el servicio de PostgreSQL 18 en modo local reproducible
+# para el desarrollo y las pruebas automatizadas, exponiendo el puerto 5432 con
+# las credenciales del proyecto y un volumen persistente para los datos.
+# All Rights Reserved arodoo
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: threed-template-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: threed_template
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d threed_template"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres-test:
+    image: postgres:18-alpine
+    container_name: threed-template-postgres-test
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: threed_template_test
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d threed_template_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres-data:
